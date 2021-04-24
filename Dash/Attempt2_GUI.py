@@ -16,38 +16,39 @@ encoded_image = base64.b64encode(open(image_filename, 'rb').read())
 
 app.layout = html.Div([
     dbc.Row([
-        dbc.Col(html.Div(id='Av_g', style={'fontSize': 50, 'align-items': 'center', 'marginTop':'100px'}), width="auto"),
+        dbc.Col(html.Div(id='Av_g', style={'fontSize': 50, 'align-items': 'left'})),
 
         dbc.Col(html.Img(src='data:image/png;base64,{}'.format(encoded_image.decode()),
-                         style={'width': '100%', 'display': 'flex', 'align-items': 'center', 'justify-content': 'center'}), width="auto"),
+                         style={'width': '100%', 'display': 'flex', 'align-items': 'center', 'justify-content': 'center'})),
 
-        dbc.Col([
-            dbc.Row(html.Div(id='Av_d', style={'fontSize': 50, 'align-items': 'center', 'marginTop': '100px'})),
-            dbc.Row(html.Div(id='Arr', style={'fontSize': 50, 'align-items': 'center', 'marginTop': '450px'}))
-        ]),
-
-        dbc.Col([daq.GraduatedBar(
-                id='throt',
-                label={'label':"Throttle", 'style':{'fontSize': 40, 'marginTop':'19px'}},
-                max=100,
-                size=300,
-                vertical=True),
-            daq.GraduatedBar(
-                id='temp',
-                label={'label':"Temperature", 'style':{'fontSize': 40, 'marginTop':'40px'}},
-                max=100,
-                size=300,
-                vertical=True
-            )],
-            width="auto"
+        dbc.Col(
+            dbc.Row(html.Div(id='Av_d', style={'fontSize': 50, 'align-items': 'left'})),
         ),
 
-        dbc.Col([
-            dcc.Graph(id='steer'),
-            dcc.Graph(id='rpm'),
-        ], width="auto"
+        dbc.Col(daq.GraduatedBar(
+                id='throt',
+                label='throttle',
+                max=100,
+                vertical=True),
+        ),
+
+        dbc.Col(
+            dcc.Graph(id='steer')
+            #dcc.Graph(id='rpm'),
         )
     ], justify='center'),
+
+    dbc.Row([
+        dbc.Col(dbc.Row(html.Div(id='Arr', style={'fontSize': 50, 'align-items': 'left'}))),
+        dbc.Col(daq.GraduatedBar(
+                id='temp',
+                label='temperature',
+                max=100,
+                vertical=True
+            )),
+        dbc.Col(dcc.Graph(id='rpm'))
+    ]),
+
     dcc.Interval(id="progress-interval", n_intervals=0, interval=100),
 ])
 
