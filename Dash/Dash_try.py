@@ -83,6 +83,7 @@ def update_graph_live(n):
         'type': 'scatter'
     }, 2, 1)
 
+    print(fig)
     return fig
 
 
