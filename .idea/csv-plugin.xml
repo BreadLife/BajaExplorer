@@ -24,6 +24,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\Dash\LayoutTry.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Dash\Rpm_roues.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\Dash\Steering.py">
           <value>
             <Attribute>
