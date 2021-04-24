@@ -24,14 +24,11 @@ app.layout = html.Div([
 def update_output(n):
     progress = min(n % 110, 100)
     fig = go.Figure(go.Indicator(
-        mode="gauge+number+delta",
-        title={'text': "Speed"},
+        mode="gauge",
+        title={'text': "Steering"},
         delta={'reference': 380},
-        gauge={'axis': {'range': [None, 500]},
-               'steps': [
-                   {'range': [0, 250], 'color': "lightgray"},
-                   {'range': [250, 400], 'color': "gray"}],
-               'threshold': {'line': {'color': "red", 'width': 4}, 'thickness': 0.75, 'value': 490}}))
+        gauge={'axis': {'range': [None, 100]},
+               'threshold': {'line': {'color': "red", 'width': 4}, 'thickness': 1, 'value': progress}}))
     return fig
 
 if __name__ == '__main__':
