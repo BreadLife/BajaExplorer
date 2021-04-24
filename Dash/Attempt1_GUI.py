@@ -68,8 +68,6 @@ def update_output(n):
     rpm = min(n % 510, 500)
     fig_steer = go.Figure(go.Indicator(
         mode="gauge",
-        title={'text': "Steering"},
-        delta={'reference': 380},
         gauge={'axis': {'range': [None, 100]},
                'threshold': {'line': {'color': "red", 'width': 4}, 'thickness': 1, 'value': progress}}
     ))
@@ -77,9 +75,10 @@ def update_output(n):
         mode="gauge+number",
         value=rpm,
         domain={'x': [0, 1], 'y': [0, 1]},
-        title={'text': "Speed"},
         gauge = {'axis': {'range': [None, 500]}}
     ))
+    fig_steer.update_layout(title="Steering", font=dict(size=30))
+    fig_rpm.update_layout(title="RPM Moteur", font=dict(size=30))
     return f'{progress:04}'\
         , f'{progress:04}'\
         , f'{progress:04}'\
