@@ -2,7 +2,7 @@
 import time
 from tkinter import *
 import tkinter.ttk as ttk
-import CréationVariablesOrdonnées as Cr
+from GUI import CréationVariablesOrdonnées as Cr
 
 #Max
 MAX_RPM_AVG = 1000
