@@ -1,21 +1,44 @@
 import serial
+import io
 import time
+"""
+Settings for Lora
 
-ser = serial.Serial('COM15', 9600, bytesize=serial.EIGHTBITS, timeout=40, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE)
+Bd rate = 5600
+DataBits = 8
+Parity = None
+StopBits = One
+PortName = 
+WriteTimeout = 30
+Newline = "\r\n"
+"""
 
+#I could make a program to look for the port.... but am I gonna?
+ser = serial.Serial('COM15', 57600, bytesize=serial.EIGHTBITS, timeout=30, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE)
+sio = io.TextIOWrapper(io.BufferedRWPair(ser, ser), newline='\r\n')
+
+
+#Fetch buffer
 def COM15_fetch():
-    byt = ser.in_waiting
-    if (byt > 1):
-        number = ser.read(byt)
-        return int(number)
+    msg = sio.readall()
+    return msg
+    sio.flush()
+
+#TALK TO ME LORA
+def Lora_setup():
+    ser.write("radio set freq 914000000")
+    time.sleep(0.05)
+    ser.write("radio set sf sf11")
+    time.sleep(0.05)
+    ser.write("radio set bw 500")
+    time.sleep(0.05)
+    ser.write("radio set sync bf")
+    time.sleep(0.05)
+    ser.write("mac pause")
+
+#It's action time babiiiii
+Lora_setup()
 
 while(1):
-    bruh = COM15_fetch()
-    print(bruh)
-
-"""
-    byt = ser.in_waiting
-    number = ser.read(byt)
-    if (byt > 1):
-        print(byt)
-        print(number)"""
+    raw_data = COM15_fetch()
+    print(raw_data)
