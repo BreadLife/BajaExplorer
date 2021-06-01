@@ -37,8 +37,10 @@ def Lora_setup():
     ser.write("mac pause")
 
 #It's action time babiiiii
+"""
 Lora_setup()
 
 while(1):
     raw_data = COM15_fetch()
     print(raw_data)
+"""
