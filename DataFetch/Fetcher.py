@@ -19,26 +19,45 @@ sio = io.TextIOWrapper(io.BufferedRWPair(ser, ser), newline='\r\n')
 
 #Fetch buffer
 def COM15_fetch():
-    msg = sio.readline()
-    return msg
+    msg = sio.read()
+    if (msg != ""):
+        return msg
     sio.flush()
 
 #TALK TO ME LORA
 def Lora_setup():
     ser.write(b'radio set freq 914000000')
     time.sleep(0.05)
-    ser.write(b"radio set sf sf11")
+    msg = sio.read()
+    print(msg)
+    ser.write(b'radio set sf sf11')
+    msg = sio.readlines()
+    print(msg)
     time.sleep(0.05)
-    ser.write(b"radio set bw 500")
+    ser.write(b'radio set bw 500')
+    msg = sio.readlines()
+    print(msg)
     time.sleep(0.05)
-    ser.write(b"radio set sync bf")
+    ser.write(b'radio set sync bf')
+    msg = sio.readlines()
+    print(msg)
     time.sleep(0.05)
-    ser.write(b"mac pause")
+    ser.write(b'mac pause')
+    msg = sio.readlines()
+    print(msg)
+    time.sleep(0.05)
+
+def test():
+    ser.write(b'AAAAAA')
+    time.sleep(0.05)
+    #msg = sio.read()
+    #print(msg)
 
 #It's action time babiiiii
+#Lora_setup()
+test()
 
-Lora_setup()
 
-while(1):
+while(True):
     raw_data = COM15_fetch()
     print(raw_data)
