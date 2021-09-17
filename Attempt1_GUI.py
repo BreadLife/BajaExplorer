@@ -1,3 +1,6 @@
+import sys
+import os
+
 import dash
 import base64
 import plotly.graph_objects as go
@@ -7,39 +10,51 @@ import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
 
+sys.path.append(os.path.abspath("/Baja-ETS/BajaExplorer/DataFetch"))
+from DataFetch import Interpreter
+
 external_stylesheets = [dbc.themes.BOOTSTRAP]
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
-image_filename = 'bajaTOP.png'
+image_filename = 'GUI/Dash_att/bajaTOP.png'
 encoded_image = base64.b64encode(open(image_filename, 'rb').read())
 
 app.layout = html.Div([
     dbc.Row([
+        #rpm roue Avant gauche
         dbc.Col(html.Div(id='Av_g', style={'fontSize': 50, 'align-items': 'center', 'marginTop':'100px'}), width="auto"),
 
+        #image Baja
         dbc.Col(html.Img(src='data:image/png;base64,{}'.format(encoded_image.decode()),
-                         style={'width': '100%', 'display': 'flex', 'align-items': 'center', 'justify-content': 'center'}), width="auto"),
+                         style={'width': '100%', 'display': 'flex', 'align-items': 'center'}), width="auto"),
+
+        #rpm roue avant droite et arrières
+        dbc.Col([
+            dbc.Row(html.Div(id='Av_d', style={'fontSize': 50, 'align-items': 'left', 'marginTop': '100px'})),
+            dbc.Row(html.Div(id='Arr', style={'fontSize': 50, 'align-items': 'left', 'marginTop': '450px'}))
+        ], align="left"),
+
 
         dbc.Col([
-            dbc.Row(html.Div(id='Av_d', style={'fontSize': 50, 'align-items': 'center', 'marginTop': '100px'})),
-            dbc.Row(html.Div(id='Arr', style={'fontSize': 50, 'align-items': 'center', 'marginTop': '450px'}))
-        ]),
-
-        dbc.Col([daq.GraduatedBar(
+            dbc.Row(
+            #Thottle
+            daq.GraduatedBar(
                 id='throt',
                 label={'label':"Throttle", 'style':{'fontSize': 40, 'marginTop':'19px'}},
                 max=100,
                 size=300,
-                vertical=True),
+                vertical=True)),
+
+            dbc.Row(
+            #Temperature
             daq.GraduatedBar(
                 id='temp',
                 label={'label':"Temperature", 'style':{'fontSize': 40, 'marginTop':'40px'}},
                 max=100,
                 size=300,
                 vertical=True
-            )],
-            width="auto"
+            ))], align="left"
         ),
 
         dbc.Col([
