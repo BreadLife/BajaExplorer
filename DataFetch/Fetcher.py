@@ -14,7 +14,7 @@ Newline = "\r\n"
 """
 
 #I could make a program to look for the port.... but am I gonna?
-ser = serial.Serial('COM16', 57600, bytesize=serial.EIGHTBITS, timeout=30, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE)
+ser = serial.Serial('COM3', 57600, bytesize=serial.EIGHTBITS, timeout=30, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE)
 
 #Fetch buffer
 def COM_fetch():
@@ -58,7 +58,7 @@ def Fetcher_array():
     return data
 
 #It's action time babiiiii
-Lora_setup()
+#Lora_setup()
 
 #test()
 
@@ -71,10 +71,7 @@ while(True):
         print(data)
         for i in data[0:10]:
             data.remove(i)
-        for i in range(2):
-            data.pop()
         print(raw_data)
         print(data)
-        print("Réception : " + str(len(data)*100 / 114) + "%")
+        print("Réception : " + str(len(data)*100 / 114) + "%\n")
         print(data[10:20])
-        print()

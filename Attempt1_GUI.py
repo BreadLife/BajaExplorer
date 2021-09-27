@@ -33,7 +33,7 @@ app.layout = html.Div([
         dbc.Col([
             dbc.Row(html.Div(id='Av_d', style={'fontSize': 50, 'align-items': 'left', 'marginTop': '100px'})),
             dbc.Row(html.Div(id='Arr', style={'fontSize': 50, 'align-items': 'left', 'marginTop': '450px'}))
-        ], align="left"),
+        ], width="auto"),
 
 
         dbc.Col([
@@ -41,28 +41,28 @@ app.layout = html.Div([
             #Thottle
             daq.GraduatedBar(
                 id='throt',
-                label={'label':"Throttle", 'style':{'fontSize': 40, 'marginTop':'19px'}},
+                label={'label':"Throttle", 'style':{'fontSize': 40, 'marginTop':'10px'}},
                 max=100,
                 size=300,
-                vertical=True)),
+                vertical=True)
+            ),
 
             dbc.Row(
             #Temperature
             daq.GraduatedBar(
                 id='temp',
-                label={'label':"Temperature", 'style':{'fontSize': 40, 'marginTop':'40px'}},
+                label={'label':"Temperature", 'style':{'fontSize': 40, 'marginTop':'10px'}},
                 max=100,
                 size=300,
-                vertical=True
-            ))], align="left"
+                vertical=True),
+            )],
         ),
 
         dbc.Col([
             dcc.Graph(id='steer'),
             dcc.Graph(id='rpm'),
-        ], width="auto"
-        )
-    ], justify='center'),
+        ])
+    ], align="auto"),
     dcc.Interval(id="progress-interval", n_intervals=0, interval=100),
 ])
 
@@ -79,16 +79,16 @@ app.layout = html.Div([
 )
 
 def update_output(n):
-    progress = min(n % 110, 100)
-    rpm = min(n % 510, 500)
+    progress = 0
+    rpm = 0
     fig_steer = go.Figure(go.Indicator(
         mode="gauge",
         gauge={'axis': {'range': [None, 100]},
-               'threshold': {'line': {'color': "red", 'width': 4}, 'thickness': 1, 'value': progress}}
+               'threshold': {'line': {'color': "red", 'width': 4}, 'thickness': 1, 'value': Interpreter.volt}}
     ))
     fig_rpm = go.Figure(go.Indicator(
         mode="gauge+number",
-        value=rpm,
+        value=Interpreter.rpm,
         domain={'x': [0, 1], 'y': [0, 1]},
         gauge = {'axis': {'range': [None, 500]}}
     ))
