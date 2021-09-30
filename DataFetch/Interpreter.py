@@ -1,9 +1,40 @@
-
 #check if bytes are signed or not
 
 def interpreter(Data):
     Reception = float(len(Data)*100/57)
 
+    print("Raw Data :" + str(Data))
+
+    Data = str(Data)
+    Data = Data.split(" ")
+    bData = 0
+
+    if Data[0] == "b'radio_rx":
+        Data.pop(0)
+        Data = ''.join(map(str, Data))
+        Data = Data.replace("\\r\\n'", "")
+        Data = ''.join(map(str, Data))
+        bData = bytearray(Data, 'utf-8')
+
+        for i in range(len(Data)*2-58):
+            if i%3==0:
+                Data = Data[:i] + '.' + Data[i:]
+                print(Data)
+
+        Data = Data.split('.')
+
+    print("Data :" + str(Data))
+    print("Data_b :" + str(bData))
+
+    return Data
+"""
+
+    print("lenght: " + str(len(Data)))
+    print("0: " + str(Data[0]))
+    print("1: " + str(Data[1]))
+    print("2: " + str(Data[2]))
+    print("3: " + str(Data[3]))
+    
     global frameCounterByte
     global tpm
     global speed
@@ -32,4 +63,8 @@ def interpreter(Data):
     rpmCmd =            int.from_bytes(Data[48:51], byteorder='big')
     volt =              int.from_bytes(Data[53:56], byteorder='big')
 
-    return Reception
+    print("frame: " + str(frameCounterByte))
+    print("speed: " + str(speed))
+    print("volt: " + str(volt))
+"""
+

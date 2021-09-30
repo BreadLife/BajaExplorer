@@ -18,6 +18,8 @@ ser = serial.Serial('COM3', 57600, bytesize=serial.EIGHTBITS, timeout=30, parity
 
 #Fetch buffer
 def COM_fetch():
+    ser.write(b'radio rx 0\r\n')
+    time.sleep(0.4)
     msg = ser.readline()
     return msg
 
@@ -28,6 +30,7 @@ def Lora_setup():
     msg = ser.readline()
     print(msg)
     ser.write(b'radio set sf sf11\r\n')
+    time.sleep(0.1)
     msg = ser.readline()
     print(msg)
     time.sleep(0.1)
@@ -62,7 +65,9 @@ def Fetcher_array():
 
 #test()
 
+"""
 while(True):
+    print("yo")
     ser.write(b'radio rx 0\r\n')
     raw_data = COM_fetch()
     data = bytearray(raw_data)
@@ -75,3 +80,4 @@ while(True):
         print(data)
         print("Réception : " + str(len(data)*100 / 114) + "%\n")
         print(data[10:20])
+"""
