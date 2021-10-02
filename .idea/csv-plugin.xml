@@ -129,6 +129,34 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\GUI\Prototypes\FinalTkinter\Affichage_Final.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\GUI\Prototypes\FinalTkinter\Affichage_fonctions.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\GUI\Prototypes\KivyTryouts\KivyCatalogApp.kv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\GUI\Prototypes\KivyTryouts\Kivy_try_1.py">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>

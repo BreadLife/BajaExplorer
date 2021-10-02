@@ -19,7 +19,7 @@ ser = serial.Serial('COM3', 57600, bytesize=serial.EIGHTBITS, timeout=30, parity
 #Fetch buffer
 def COM_fetch():
     ser.write(b'radio rx 0\r\n')
-    time.sleep(0.4)
+    time.sleep(0.1)
     msg = ser.readline()
     return msg
 

@@ -3,6 +3,8 @@ import time
 from tkinter import *
 import tkinter.ttk as ttk
 
+
+
 #Max
 MAX_RPM_AVG = 1000
 MAX_RPM_AVD = 1000

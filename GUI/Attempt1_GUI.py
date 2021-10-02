@@ -17,7 +17,7 @@ external_stylesheets = [dbc.themes.BOOTSTRAP]
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 
-image_filename = 'GUI/Dash_att/bajaTOP.png'
+image_filename = 'Dash_att/bajaTOP.png'
 encoded_image = base64.b64encode(open(image_filename, 'rb').read())
 
 app.layout = html.Div([
@@ -79,16 +79,16 @@ app.layout = html.Div([
 )
 
 def update_output(n):
-    progress = 0
-    rpm = 0
+    progress = min(n % 110, 100)
+    rpm = min(n % 510, 500)
     fig_steer = go.Figure(go.Indicator(
         mode="gauge",
         gauge={'axis': {'range': [None, 100]},
-               'threshold': {'line': {'color': "red", 'width': 4}, 'thickness': 1, 'value': Interpreter.volt}}
+               'threshold': {'line': {'color': "red", 'width': 4}, 'thickness': 1, 'value': progress}}
     ))
     fig_rpm = go.Figure(go.Indicator(
         mode="gauge+number",
-        value=Interpreter.rpm,
+        value=rpm,
         domain={'x': [0, 1], 'y': [0, 1]},
         gauge = {'axis': {'range': [None, 500]}}
     ))

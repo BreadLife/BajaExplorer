@@ -1,44 +1,36 @@
 #check if bytes are signed or not
 
+
+
 def interpreter(Data):
-    Reception = float(len(Data)*100/57)
+    #Reception = float(len(Data)*100/57)
 
     print("Raw Data :" + str(Data))
 
     Data = str(Data)
     Data = Data.split(" ")
-    bData = 0
 
     if Data[0] == "b'radio_rx":
         Data.pop(0)
         Data = ''.join(map(str, Data))
         Data = Data.replace("\\r\\n'", "")
         Data = ''.join(map(str, Data))
-        bData = bytearray(Data, 'utf-8')
 
         for i in range(len(Data)*2-58):
             if i%3==0:
                 Data = Data[:i] + '.' + Data[i:]
-                print(Data)
 
         Data = Data.split('.')
-
-    print("Data :" + str(Data))
-    print("Data_b :" + str(bData))
+        Data.pop(0)
 
     return Data
-"""
 
-    print("lenght: " + str(len(Data)))
-    print("0: " + str(Data[0]))
-    print("1: " + str(Data[1]))
-    print("2: " + str(Data[2]))
-    print("3: " + str(Data[3]))
-    
+def assignation(Data):
+
     global frameCounterByte
-    global tpm
-    global speed
     global runTime
+    global speed
+    global tpm
     global rpm
     global oilTemp
     global boardTemp
@@ -49,22 +41,19 @@ def interpreter(Data):
     global rpmCmd
     global volt
 
-    frameCounterByte =  int.from_bytes(Data[0:1]  , byteorder='big')
-    runTime =           int.from_bytes(Data[2:4]  , byteorder='big')
-    speed =             int.from_bytes(Data[5:6]  , byteorder='big')
-    tpm =               int.from_bytes(Data[8:11] , byteorder='big')
-    rpm =               int.from_bytes(Data[13:16], byteorder='big')
-    oilTemp =           int.from_bytes(Data[18:21], byteorder='big')
-    boardTemp =         int.from_bytes(Data[23:26], byteorder='big')
-    actPos =            int.from_bytes(Data[28:31], byteorder='big')
-    actCmd =            int.from_bytes(Data[33:36], byteorder='big')
-    actDc =             int.from_bytes(Data[38:41], byteorder='big')
-    actRot =            int.from_bytes(Data[43:46], byteorder='big')
-    rpmCmd =            int.from_bytes(Data[48:51], byteorder='big')
-    volt =              int.from_bytes(Data[53:56], byteorder='big')
+    frameCounterByte =  int(Data[0], base=16)
+    runTime =           int(Data[1], base=16)
+    speed =             int(Data[2], base=16)
+    tpm =               int(Data[3] + Data[4], base=16)
+    rpm =               int(Data[5] + Data[6], base=16)
+    oilTemp =           int(Data[7] + Data[8], base=16)
+    boardTemp =         int(Data[9] + Data[10], base=16)
+    actPos =            int(Data[11] + Data[12], base=16)
+    actCmd =            int(Data[13] + Data[14], base=16)
+    actDc =             int(Data[15] + Data[16], base=16)
+    actRot =            int(Data[17] + Data[18], base=16)
+    rpmCmd =            int(Data[19] + Data[20], base=16)
+    volt =              int(Data[21] + Data[22], base=16)
 
-    print("frame: " + str(frameCounterByte))
-    print("speed: " + str(speed))
-    print("volt: " + str(volt))
-"""
+    return frameCounterByte, runTime, speed, tpm, rpm, oilTemp, boardTemp, actPos, actCmd, actDc, actRot, rpmCmd, volt
 
