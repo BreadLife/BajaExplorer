@@ -122,6 +122,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\GUI\Attempt1_GUI.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\GUI\Dash_att\Attempt2_GUI(not_working).py">
           <value>
             <Attribute>

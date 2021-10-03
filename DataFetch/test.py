@@ -1,6 +1,9 @@
 import serial
 import io
 import time
+import struct
+
+
 """
 Settings for Lora
 
@@ -66,12 +69,32 @@ def essai_str_to_int():
 
     print(str)
 
+def decoder_gps_data():
+    entier = '80'
+    fraction = '83023E'
+
+    entier = int(entier, base=16)
+    fraction = int(fraction, base=16)
+
+    nombre = -(((entier & 0x80) | (entier & 0x7f)) + (1 - 1 / fraction))
+
+    print(nombre)
+
+    return nombre
+
+"""
+    entier_x = int(bin(entier, ), base=2)
+    fraction_x = 1 - 1/int(fraction, base=16)
+
+    print(bin(int(entier, base=16)))
+"""
+
+
+data = decoder_gps_data()
+print(data)
 
 """Lora_setup()
 data = communicate()
 print(data)
 """
 #test()
-
-essai_str_to_int()
-

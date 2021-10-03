@@ -6,7 +6,7 @@ sys.path.append(os.path.abspath("/Baja-ETS/BajaExplorer/DataFetch"))
 from DataFetch import Interpreter
 from DataFetch import Fetcher as Ft
 
-Ft.Lora_setup()
+#Ft.Lora_setup()
 
 frameCounterByte = 0
 runTime = 0
@@ -23,23 +23,10 @@ rpmCmd = 0
 volt = 0
 
 def data():
-    global frameCounterByte
-    global runTime
-    global speed
-    global tpm
-    global rpm
-    global oilTemp
-    global boardTemp
-    global actPos
-    global actCmd
-    global actDc
-    global actRot
-    global rpmCmd
-    global volt
 
     raw_data = Ft.COM_fetch()
     Data = Interpreter.interpreter(raw_data)
     if len(Data) > 20:
-        frameCounterByte, runTime, speed, tpm, rpm, oilTemp, boardTemp, actPos, actCmd, actDc, actRot, rpmCmd, volt = Interpreter.assignation(Data)
+        Hour, Minute, Second, Latitude_int, Latitude_frac, longitude_int, longitude_frac = Interpreter.assignation(Data)
 
-    return frameCounterByte, runTime, speed, tpm, rpm, oilTemp, boardTemp, actPos, actCmd, actDc, actRot, rpmCmd, volt
+    return Hour, Minute, Second, Latitude_int, Latitude_frac, longitude_int, longitude_frac
