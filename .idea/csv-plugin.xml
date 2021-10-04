@@ -136,6 +136,27 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\GUI\Dash_att\GPS_live.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\GUI\GPS\GPS_Feeder.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\GUI\GPS\GPS_live.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\GUI\Prototypes\FinalTkinter\Affichage_Final.py">
           <value>
             <Attribute>

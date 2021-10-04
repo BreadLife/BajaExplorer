@@ -1,5 +1,11 @@
 #check if bytes are signed or not
-
+Hour = 0
+Minute = 0
+Second = 0
+Latitude_int = 0
+Latitude_frac = 0
+longitude_int = 0
+longitude_frac = 0
 
 
 def interpreter(Data):
@@ -37,6 +43,14 @@ def decoder_gps_data(entier, fraction):
 
 def assignation(Data):
 
+
+    global canData1
+    global canData2
+    global canData3
+    global canData4
+    global canData5
+    global canData6
+
     global Hour
     global Minute
     global Second
@@ -59,13 +73,23 @@ def assignation(Data):
     global rpmCmd
     global volt
 
-    Hour = (int(Data[2], base=16) + 20)%24
+    Hour = int(Data[2], base=16)
     Minute = int(Data[3], base=16)
     Second = int(Data[4], base=16)
     Latitude_int = int(Data[5], base=16)
     Latitude_frac = int(Data[9] + Data[8] + Data[7] + Data[6], base=16)
     longitude_int = int(Data[10], base=16)
     Latitude_frac = int(Data[14] + Data[13] + Data[12] + Data[11], base=16)
+
+    speed = int(Data[16] + Data[15], base=16)
+
+    canData1 = int(Data[20], base=16)
+    canData2 = int(Data[21], base=16)
+    canData3 = int(Data[22], base=16)
+    canData4 = int(Data[23], base=16)
+    canData5 = int(Data[24], base=16)
+    canData6 = int(Data[25], base=16)
+
 
     #frameCounterByte =  int(Data[0], base=16)
     #runTime =           int(Data[1], base=16)
@@ -81,4 +105,4 @@ def assignation(Data):
     #rpmCmd =            int(Data[19] + Data[20], base=16)
     #volt =              int(Data[21] + Data[22], base=16)
 
-    return Hour, Minute, Second, Latitude_int, Latitude_frac, longitude_int, longitude_frac
+    return Hour, Minute, Second, Latitude_int, Latitude_frac, longitude_int, longitude_frac, canData1, canData2, canData3, canData4, canData5, canData6
