@@ -185,6 +185,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\gui_tabs.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>

@@ -45,7 +45,7 @@ class LORAStatusTab(LORAApp_tab):
         self.displaysLayout.setObjectName("displaysLayout")
         self.tabMainLayout.addLayout(self.displaysLayout)
 
-        # display - Sheave Clamping
+        # display - Connections status
         self.connectionStatusDisplayArea = QtWidgets.QWidget(self)
         self.connectionStatusDisplayArea.setObjectName("sheaveClampingDisplayArea")
         #self.connectionStatusDisplayArea.setFixedWidth(300)
@@ -68,174 +68,148 @@ class LORAStatusTab(LORAApp_tab):
                                                           text="N/A",
                                                           alignment=Qt.AlignLeft)
 
-        #loraApp_VLine(self, self.displaysLayout)
+        loraApp_HLine(self, self.displaysLayout)
 
-#        # display - RPM Moteur
-#        self.rpmMoteurDisplayArea = QtWidgets.QWidget(self)
-#        self.rpmMoteurDisplayArea.setObjectName("rpmMoteurDisplayArea")
-#        self.rpmMoteurDisplayArea.setFixedWidth(300)
-#        self.rpmMoteurDisplayArea.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Expanding))
-#        self.displaysLayout.addWidget(self.rpmMoteurDisplayArea)
+        # display - Console
+        self.consoleDisplayArea = QtWidgets.QWidget(self)
+        self.consoleDisplayArea.setObjectName("consoleDisplayArea")
+        #self.consoleDisplayArea.setFixedWidth(300)
+        self.consoleDisplayArea.setSizePolicy(QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed))
+        self.displaysLayout.addWidget(self.consoleDisplayArea)
+
+        self.consoleDisplayLayout = QtWidgets.QVBoxLayout(self.consoleDisplayArea)
+        self.consoleDisplayLayout.setObjectName("consoleDisplayLayout")
+        self.consoleDisplayLayout.setAlignment(Qt.AlignHCenter)
+
+#        self.consoleDisplayTitle = evtApp_label(self,
+#                                                layout=self.consoleDisplayLayout,
+#                                                fontSize=TEXT_FONT_SIZE_TITLE,
+#                                                text="Sheave Clamping",
+#                                                alignment=Qt.AlignHCenter)
+#        self.consoleDisplayValue = evtApp_label(self,
+#                                                layout=self.consoleDisplayLayout,
+#                                                fontSize=TEXT_FONT_SIZE_TITLE * 2,
+#                                                text="N/A",
+#                                                alignment=Qt.AlignHCenter)
+
+        # information section ----------------------------------------------------------------------------------------
+#        self.informationLayout = QtWidgets.QHBoxLayout(self)
+#        self.informationLayout.setObjectName("informationLayout")
+#        self.tabMainLayout.addLayout(self.informationLayout)
 #
-#        self.rpmMoteurDisplayLayout = QtWidgets.QVBoxLayout(self.rpmMoteurDisplayArea)
-#        self.rpmMoteurDisplayLayout.setObjectName("rpmMoteurDisplayLayout")
-#        self.rpmMoteurDisplayLayout.setAlignment(Qt.AlignHCenter)
+#        # Sensor Status Section
+#        self.SensorStatusTopLayout = QtWidgets.QVBoxLayout(self)
+#        self.SensorStatusTopLayout.setObjectName("SensorStatusTitleLayout")
+#        self.informationLayout.addLayout(self.SensorStatusTopLayout)
 #
-#        self.rpmMoteurDisplayTitle = evtApp_label(self,
-#                                                  layout=self.rpmMoteurDisplayLayout,
-#                                                  fontSize=TEXT_FONT_SIZE_TITLE,
-#                                                  text="RPM Moteur",
-#                                                  alignment=Qt.AlignHCenter)
-#        self.rpmMoteurDisplayValue = evtApp_label(self,
-#                                                  layout=self.rpmMoteurDisplayLayout,
-#                                                  fontSize=TEXT_FONT_SIZE_TITLE * 2,
-#                                                  text="N/A",
-#                                                  alignment=Qt.AlignHCenter)
+#        # Vertical Line
+#        loraApp_VLine(self, self.informationLayout)
 #
-#        evtApp_VLine(self, self.displaysLayout)
+#        # General Information Section
+#        self.generalInformationLayout = QtWidgets.QVBoxLayout(self)
+#        self.generalInformationLayout.setObjectName("generalInformationLayout")
+#        self.informationLayout.addLayout(self.generalInformationLayout)
 #
-#        # display - Throttle Position
-#        self.throttlePositionDisplayArea = QtWidgets.QWidget(self)
-#        self.throttlePositionDisplayArea.setObjectName("throttlePositionDisplayArea")
-#        self.throttlePositionDisplayArea.setFixedWidth(300)
-#        self.throttlePositionDisplayArea.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Expanding))
-#        self.displaysLayout.addWidget(self.throttlePositionDisplayArea)
+#        # Sensor Status
+#        self.SensorStatusTitle = loraApp_label(self,
+#                                               layout=self.SensorStatusTopLayout,
+#                                               fontSize=TEXT_FONT_SIZE_TITLE,
+#                                               text="Sensor Status Information",
+#                                               alignment=Qt.AlignLeft)
 #
-#        self.throttlePositionDisplayLayout = QtWidgets.QVBoxLayout(self.throttlePositionDisplayArea)
-#        self.throttlePositionDisplayLayout.setObjectName("throttlePositionDisplayLayout")
-#        self.throttlePositionDisplayLayout.setAlignment(Qt.AlignHCenter)
+#        self.SensorStatusLayout = QtWidgets.QHBoxLayout(self)
+#        self.SensorStatusLayout.setObjectName("SensorStatusLayout")
+#        self.SensorStatusTopLayout.addLayout(self.SensorStatusLayout)
 #
-#        self.throttlePositionDisplayTitle = evtApp_label(self,
-#                                                       layout=self.throttlePositionDisplayLayout,
-#                                                       fontSize=TEXT_FONT_SIZE_TITLE,
-#                                                       text="Throttle Pos",
-#                                                       alignment=Qt.AlignHCenter)
-#        self.throttlePositionDisplayValue = evtApp_label(self,
-#                                                       layout=self.throttlePositionDisplayLayout,
-#                                                       fontSize=TEXT_FONT_SIZE_TITLE * 2,
-#                                                       text="N/A",
-#                                                       alignment=Qt.AlignHCenter)
+#        self.SensorStatusTitleLayout = QtWidgets.QVBoxLayout(self)
+#        self.SensorStatusTitleLayout.setObjectName("SensorStatusTitleLayout")
+#        self.SensorStatusLayout.addLayout(self.SensorStatusTitleLayout)
 #
-#        evtApp_HLine(self, self.tabMainLayout)
-
-        # information section ---------------------------------------------------------------------------------------- #
-        self.informationLayout = QtWidgets.QHBoxLayout(self)
-        self.informationLayout.setObjectName("informationLayout")
-        self.tabMainLayout.addLayout(self.informationLayout)
-
-        # Sensor Status Section
-        self.SensorStatusTopLayout = QtWidgets.QVBoxLayout(self)
-        self.SensorStatusTopLayout.setObjectName("SensorStatusTitleLayout")
-        self.informationLayout.addLayout(self.SensorStatusTopLayout)
-
-        # Vertical Line
-        loraApp_VLine(self, self.informationLayout)
-
-        # General Information Section
-        self.generalInformationLayout = QtWidgets.QVBoxLayout(self)
-        self.generalInformationLayout.setObjectName("generalInformationLayout")
-        self.informationLayout.addLayout(self.generalInformationLayout)
-
-        # Sensor Status
-        self.SensorStatusTitle = loraApp_label(self,
-                                               layout=self.SensorStatusTopLayout,
-                                               fontSize=TEXT_FONT_SIZE_TITLE,
-                                               text="Sensor Status Information",
-                                               alignment=Qt.AlignLeft)
-
-        self.SensorStatusLayout = QtWidgets.QHBoxLayout(self)
-        self.SensorStatusLayout.setObjectName("SensorStatusLayout")
-        self.SensorStatusTopLayout.addLayout(self.SensorStatusLayout)
-
-        self.SensorStatusTitleLayout = QtWidgets.QVBoxLayout(self)
-        self.SensorStatusTitleLayout.setObjectName("SensorStatusTitleLayout")
-        self.SensorStatusLayout.addLayout(self.SensorStatusTitleLayout)
-
-        loraApp_VLine(self, self.SensorStatusLayout)
-
-        self.SensorStatusValueLayout = QtWidgets.QVBoxLayout(self)
-        self.SensorStatusValueLayout.setObjectName("SensorStatusValueLayout")
-        self.SensorStatusLayout.addLayout(self.SensorStatusValueLayout)
-
-        # TPM Sensor status
-        self.TPMSensorStatusTitle = loraApp_label(self,
-                                                  layout=self.SensorStatusTitleLayout,
-                                                  fontSize=TEXT_FONT_SIZE_NORMAL,
-                                                  text="TPM",
-                                                  alignment=Qt.AlignRight)
-        self.TPMSensorStatusValue = loraApp_label(self,
-                                                  layout=self.SensorStatusValueLayout,
-                                                  fontSize=TEXT_FONT_SIZE_NORMAL,
-                                                  text="EVT Not Connected",
-                                                  alignment=Qt.AlignLeft)
-
-        # RPM Sensor status
-        self.RPMSensorStatusTitle = loraApp_label(self,
-                                                  layout=self.SensorStatusTitleLayout,
-                                                  fontSize=TEXT_FONT_SIZE_NORMAL,
-                                                  text="RPM",
-                                                  alignment=Qt.AlignRight)
-        self.RPMSensorStatusValue = loraApp_label(self,
-                                                  layout=self.SensorStatusValueLayout,
-                                                  fontSize=TEXT_FONT_SIZE_NORMAL,
-                                                  text="EVT Not Connected",
-                                                  alignment=Qt.AlignLeft)
-
-        # ADC Sensor status
-        self.ADCSensorStatusTitle = loraApp_label(self,
-                                                  layout=self.SensorStatusTitleLayout,
-                                                  fontSize=TEXT_FONT_SIZE_NORMAL,
-                                                  text="ADC",
-                                                  alignment=Qt.AlignRight)
-        self.ADCSensorStatusValue = loraApp_label(self,
-                                                  layout=self.SensorStatusValueLayout,
-                                                  fontSize=TEXT_FONT_SIZE_NORMAL,
-                                                  text="EVT Not Connected",
-                                                  alignment=Qt.AlignLeft)
-
-        # General Info Status
-        self.generalInformationTitle = loraApp_label(self,
-                                                     layout=self.generalInformationLayout,
-                                                     fontSize=TEXT_FONT_SIZE_TITLE,
-                                                     text="General Information",
-                                                     alignment=Qt.AlignLeft)
-
-        self.codeVersionLabel = loraApp_label(self,
-                                              layout=self.generalInformationLayout,
-                                              fontSize=TEXT_FONT_SIZE_NORMAL,
-                                              text="      Code Version:",
-                                              alignment=Qt.AlignLeft)
-
-        self.debuggingLevelLabel = loraApp_label(self,
-                                                 layout=self.generalInformationLayout,
-                                                 fontSize=TEXT_FONT_SIZE_NORMAL,
-                                                 text="      Debugging Level:",
-                                                 alignment=Qt.AlignLeft)
-
-        self.ControlsTitle = loraApp_label(self,
-                                           layout=self.generalInformationLayout,
-                                           fontSize=TEXT_FONT_SIZE_TITLE,
-                                           text="Controls",
-                                           alignment=Qt.AlignLeft)
-
-        self.controlsSectionLayout = QtWidgets.QHBoxLayout(self)
-        self.controlsSectionLayout.setObjectName("controlsSectionLayout")
-        self.generalInformationLayout.addLayout(self.controlsSectionLayout)
-
-        self.liveStatus_checkBox = evtApp_checkBox(self,
-                                                   layout=self.controlsSectionLayout,
-                                                   text="Live status?",
-                                                   connect=(lambda: self.setLiveStatus()))
-
-        self.liveStatusPeriod_label = loraApp_label(self,
-                                                    layout=self.controlsSectionLayout,
-                                                    text="Période des mises à jour: ")
-        self.liveStatusPeriod_spinBox = evtApp_spinBox(self,
-                                                       layout=self.controlsSectionLayout,
-                                                       maxVal=10000)
-
+#        loraApp_VLine(self, self.SensorStatusLayout)
+#
+#        self.SensorStatusValueLayout = QtWidgets.QVBoxLayout(self)
+#        self.SensorStatusValueLayout.setObjectName("SensorStatusValueLayout")
+#        self.SensorStatusLayout.addLayout(self.SensorStatusValueLayout)
+#
+#        # TPM Sensor status
+#        self.TPMSensorStatusTitle = loraApp_label(self,
+#                                                  layout=self.SensorStatusTitleLayout,
+#                                                  fontSize=TEXT_FONT_SIZE_NORMAL,
+#                                                  text="TPM",
+#                                                  alignment=Qt.AlignRight)
+#        self.TPMSensorStatusValue = loraApp_label(self,
+#                                                  layout=self.SensorStatusValueLayout,
+#                                                  fontSize=TEXT_FONT_SIZE_NORMAL,
+#                                                  text="EVT Not Connected",
+#                                                  alignment=Qt.AlignLeft)
+#
+#        # RPM Sensor status
+#        self.RPMSensorStatusTitle = loraApp_label(self,
+#                                                  layout=self.SensorStatusTitleLayout,
+#                                                  fontSize=TEXT_FONT_SIZE_NORMAL,
+#                                                  text="RPM",
+#                                                  alignment=Qt.AlignRight)
+#        self.RPMSensorStatusValue = loraApp_label(self,
+#                                                  layout=self.SensorStatusValueLayout,
+#                                                  fontSize=TEXT_FONT_SIZE_NORMAL,
+#                                                  text="EVT Not Connected",
+#                                                  alignment=Qt.AlignLeft)
+#
+#        # ADC Sensor status
+#        self.ADCSensorStatusTitle = loraApp_label(self,
+#                                                  layout=self.SensorStatusTitleLayout,
+#                                                  fontSize=TEXT_FONT_SIZE_NORMAL,
+#                                                  text="ADC",
+#                                                  alignment=Qt.AlignRight)
+#        self.ADCSensorStatusValue = loraApp_label(self,
+#                                                  layout=self.SensorStatusValueLayout,
+#                                                  fontSize=TEXT_FONT_SIZE_NORMAL,
+#                                                  text="EVT Not Connected",
+#                                                  alignment=Qt.AlignLeft)
+#
+#        # General Info Status
+#        self.generalInformationTitle = loraApp_label(self,
+#                                                     layout=self.generalInformationLayout,
+#                                                     fontSize=TEXT_FONT_SIZE_TITLE,
+#                                                     text="General Information",
+#                                                     alignment=Qt.AlignLeft)
+#
+#        self.codeVersionLabel = loraApp_label(self,
+#                                              layout=self.generalInformationLayout,
+#                                              fontSize=TEXT_FONT_SIZE_NORMAL,
+#                                              text="      Code Version:",
+#                                              alignment=Qt.AlignLeft)
+#
+#        self.debuggingLevelLabel = loraApp_label(self,
+#                                                 layout=self.generalInformationLayout,
+#                                                 fontSize=TEXT_FONT_SIZE_NORMAL,
+#                                                 text="      Debugging Level:",
+#                                                 alignment=Qt.AlignLeft)
+#
+#        self.ControlsTitle = loraApp_label(self,
+#                                           layout=self.generalInformationLayout,
+#                                           fontSize=TEXT_FONT_SIZE_TITLE,
+#                                           text="Controls",
+#                                           alignment=Qt.AlignLeft)
+#
+#        self.controlsSectionLayout = QtWidgets.QHBoxLayout(self)
+#        self.controlsSectionLayout.setObjectName("controlsSectionLayout")
+#        self.generalInformationLayout.addLayout(self.controlsSectionLayout)
+#
+#        self.liveStatus_checkBox = evtApp_checkBox(self,
+#                                                   layout=self.controlsSectionLayout,
+#                                                   text="Live status?",
+#                                                   connect=(lambda: self.setLiveStatus()))
+#
+#        self.liveStatusPeriod_label = loraApp_label(self,
+#                                                    layout=self.controlsSectionLayout,
+#                                                    text="Période des mises à jour: ")
+#        self.liveStatusPeriod_spinBox = evtApp_spinBox(self,
+#                                                       layout=self.controlsSectionLayout,
+#                                                       maxVal=10000)
+#
         # End filler
-        evtApp_HSpacer(self.tabMainLayout)
+        #loraApp_HLine(self, self.tabMainLayout)
 
     def setLiveStatus(self):
         if self.liveStatus_checkBox.checkState() == Qt.Checked:
