@@ -425,3 +425,18 @@ class evtApp_VSpacer(QSpacerItem):
     def __init__(self, layout):
         super(evtApp_VSpacer, self).__init__(0, 0, QSizePolicy.Expanding, QSizePolicy.Minimum)
         layout.addItem(self)
+
+class loraConsole(QTextEdit):
+    def __init__(self, parent,pos_x=0, pos_y=0,
+                 height=200, width=600,
+                 text="", layout=None, fontSize=10):
+        super(loraConsole, self).__init__(parent)
+
+        self.moveCursor(QTextCursor.Start)
+        self.ensureCursorVisible()
+        self.setFixedHeight(height)
+        self.setFixedWidth(width)
+        self.setFontPointSize(12)
+        self.setTextBackgroundColor(Qt.)
+        #self.lineWrapColumnOrWidth()
+        #self.setLineWrapMode(QTextEdit.WidgetWidth)
