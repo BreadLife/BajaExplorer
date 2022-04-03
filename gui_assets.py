@@ -437,6 +437,8 @@ class loraConsole(QTextEdit):
         self.setFixedHeight(height)
         self.setFixedWidth(width)
         self.setFontPointSize(12)
-        self.setTextBackgroundColor(Qt.)
+
+
+
         #self.lineWrapColumnOrWidth()
         #self.setLineWrapMode(QTextEdit.WidgetWidth)

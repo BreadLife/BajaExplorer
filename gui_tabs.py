@@ -37,46 +37,52 @@ class LORAStatusTab(LORAApp_tab):
         # displays
         self.tabMainLayout = QtWidgets.QVBoxLayout(self)
         self.tabMainLayout.setObjectName("tabMainLayout")
-        self.tabMainLayout.setContentsMargins(15, 10, 15, 15)
+        self.tabMainLayout.setContentsMargins(5, 0, 15, 15)
+        self.tabMainLayout.setDirection(QVBoxLayout.TopToBottom)
+
 
         # display - Connections status
         self.connectionStatusDisplayArea = QtWidgets.QWidget(self)
         self.connectionStatusDisplayArea.setObjectName("loraConnectionStatusArea")
-        self.connectionStatusDisplayArea.setFixedWidth(300)
-        self.connectionStatusDisplayArea.setFixedHeight(100)
+        self.connectionStatusDisplayArea.setFixedWidth(500)
+        self.connectionStatusDisplayArea.setFixedHeight(250)
+        self.connectionStatusDisplayArea.setContentsMargins(5, 20, 0, 10)
         self.connectionStatusDisplayArea.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
+        #self.connectionStatusDisplayArea.
 
         self.connectionStatusDisplayLayout = QtWidgets.QVBoxLayout(self.connectionStatusDisplayArea)
         self.connectionStatusDisplayLayout.setObjectName("connectionStatusDisplayLayout")
         self.connectionStatusDisplayLayout.setAlignment(Qt.AlignLeft)
+        self.connectionStatusDisplayLayout.setDirection(QBoxLayout.TopToBottom)
 
-        self.connectionStatusDisplayTitle = loraApp_label(self,
-                                                          layout=self.connectionStatusDisplayLayout,
+        self.connectionStatusDisplayLayout.addWidget(loraApp_label(self,
                                                           fontSize=TEXT_FONT_SIZE_TITLE,
                                                           text="Connections Status",
                                                           alignment=Qt.AlignLeft)
-        self.connectionStatusDisplayValue = loraApp_label(self,
-                                                          layout=self.connectionStatusDisplayLayout,
+                                                     )
+
+        self.connectionStatusDisplayLayout.addWidget(loraApp_label(self,
                                                           fontSize=TEXT_FONT_SIZE_TITLE,
                                                           text="N/A",
                                                           alignment=Qt.AlignLeft)
+                                                     )
 
+        self.tabMainLayout.addWidget(self.connectionStatusDisplayArea)
 
         #loraApp_HLine(self, self.tabMainLayout)
 
         # display - Console
         self.consoleDisplayArea = QtWidgets.QWidget(self)
         self.consoleDisplayArea.setObjectName("consoleDisplayArea")
-        self.consoleDisplayArea.setFixedWidth(300)
-        self.consoleDisplayArea.setFixedHeight(100)
+        self.consoleDisplayArea.setFixedWidth(500)
+        self.consoleDisplayArea.setFixedHeight(300)
+        self.consoleDisplayArea.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
 
-        #self.consoleDisplayArea.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
+        self.consoleDisplayLayout = QtWidgets.QVBoxLayout(self.consoleDisplayArea)
 
-        self.consoleDisplay = loraConsole(self,
-                                     layout=self.consoleDisplayArea)
+        self.connectionStatusDisplayLayout.addWidget(loraConsole(self,))
 
-        self.tabMainLayout.insertWidget(0, self.connectionStatusDisplayArea, Qt.AlignHCenter)
-        self.tabMainLayout.insertWidget(1, self.consoleDisplayArea, Qt.AlignHCenter)
+        self.tabMainLayout.addWidget(self.consoleDisplayArea)
 
 
 
